@@ -19,4 +19,6 @@ def search(request):
   #https://imdb-api.com/en/API/SearchMovie/k_4i13c7ul/inception%202010
   response = requests.request("GET", url)
   print(url)
+
+  
   
