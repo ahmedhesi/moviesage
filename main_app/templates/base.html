@@ -15,7 +15,17 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;MovieSage</a></li>
         </ul>
         <ul class="right">
-          <li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'about'  %}">Movies I Want To Watch</a></li>
+            <li><a href="{% url 'about'  %}">View All Toys</a></li>
+            <li><a href="{% url 'about'  %}">Add a Cat</a></li>
+            <li><a href="{% url 'about'  %}">View All My Cats</a></li>
+            <li><a href="{% url 'logout'  %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+          {% endif %}
+            <li>
             <form action="/search/" method="POST">
               {% csrf_token %}
               <input name='searchbar' type="text" placeholder="Search Movies">
