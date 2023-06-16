@@ -1,4 +1,8 @@
 from django.shortcuts import render
+import requests, os
+import environ
+environ.Env()
+environ.Env.read_env()
 
 # Create your views here.
 
@@ -9,4 +13,10 @@ def home(request):
 
 def about(request):
   return render(request, 'about.html')
+
+def search(request):    
+  url = f"https://imdb-api.com/en/API/SearchMovie/{os.environ['API_KEY']}/{request.POST['searchbar']}"
+  #https://imdb-api.com/en/API/SearchMovie/k_4i13c7ul/inception%202010
+  response = requests.request("GET", url)
+  print(url)
   
