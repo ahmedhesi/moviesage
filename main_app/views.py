@@ -1,6 +1,10 @@
-from django.shortcuts import render
-import requests, os
-import environ
+import requests, os, environ
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie
 environ.Env()
 environ.Env.read_env()
@@ -15,6 +19,25 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
+def want_list(request):
+  movies = Movie.objects.filter(user=request.user)
+  # Another query
+  # movies = request.user.cat_set.all()
+  return render(request, 'want_watch_list.html', {
+    'movies': movies
+  })
+
+@login_required
+def watch_list(request):
+  movies = Movie.objects.filter(user=request.user)
+  # Another query
+  # movies = request.user.movies_set.all()
+  return render(request, 'watched_list.html', {
+    'movies': movies
+  })
+
+
 def search(request):    
   url = f"https://imdb-api.com/en/API/SearchMovie/{os.environ['API_KEY']}/{request.POST['searchbar']}"
   data = requests.request("GET", url).json()
@@ -22,7 +45,7 @@ def search(request):
     'results': data['results']
   })
 
-def result_detail(request, result_id):
+def detail(request, result_id):
   try:
     movie = Movie.objects.get(api_id=result_id)
     return render(request, 'movies/detail.html', {'movie': movie})
