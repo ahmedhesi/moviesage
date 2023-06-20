@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Movie(models.Model):
@@ -11,20 +11,9 @@ class Movie(models.Model):
   director = models.CharField(max_length=250)
   plot = models.CharField(max_length=250)
   stars = models.TextField(max_length=250)
-  # Create a M:M relationship with Toy
-  # toys is the Related Manager
-#   toys = models.ManyToManyField(Toy)
-  # add user_id FK column
-#   user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-  # Changing this instance method
-  # does not impact the database, therefore
-  # no makemigrations is necessary
+  wanters = models.ManyToManyField(User, related_name='wanters_article_set' )
+  watchers = models.ManyToManyField(User, related_name='watchers_article_set' )
+  
   def __str__(self):
     return f'{self.full_title} ({self.id})'
 
-#   def get_absolute_url(self):
-#     return reverse('detail', kwargs={'cat_id': self.id})
-
-#   def fed_for_today(self):
-#     return self.feeding_set.filter(date=date.today()).count() >= len(MEALS)
