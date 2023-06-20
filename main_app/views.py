@@ -13,27 +13,27 @@ environ.Env.read_env()
 
 # Define the home view
 def home(request):
-  # Include an .html file extension - unlike when rendering EJS templates
-  return render(request, 'home.html')
+ return render(request, 'home.html')
+
 
 def about(request):
   return render(request, 'about.html')
 
 @login_required
 def want_list(request):
-  movies = Movie.objects.filter(user=request.user)
-  # Another query
-  # movies = request.user.cat_set.all()
-  return render(request, 'want_watch_list.html', {
+  movies = Movie.objects.filter(wanters=request.user)
+
+  print(movies)
+  return render(request, 'want_list.html', {
     'movies': movies
   })
 
 @login_required
 def watch_list(request):
-  movies = Movie.objects.filter(user=request.user)
+  movies = Movie.objects.filter(watchers=request.user)
   # Another query
   # movies = request.user.movies_set.all()
-  return render(request, 'watched_list.html', {
+  return render(request, 'watch_list.html', {
     'movies': movies
   })
 
@@ -66,7 +66,22 @@ def detail(request, result_id):
     movie = Movie.objects.create(**new_movie)
     movie.save()
     return render(request, 'movies/detail.html', {'movie': movie})
+  
+def assoc_want_user(request, movie_id):
+   Movie.objects.get(id=movie_id).wanters.add(request.user.id)
+   return redirect('want_list')
 
+def unassoc_want_user(request, movie_id):
+  Movie.objects.get(id=movie_id).wanters.remove(request.user.id)
+  return redirect('want_list')
+
+def assoc_watched_user(request, movie_id):
+   Movie.objects.get(id=movie_id).watchers.add(request.user.id)
+   return redirect('watch_list')
+
+def unassoc_watched_user(request, movie_id):
+  Movie.objects.get(id=movie_id).watchers.remove(request.user.id)
+  return redirect('watch_list')
 
 
 
