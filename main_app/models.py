@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 # Create your models here.
+
+
 
 class Movie(models.Model):
   api_id = models.CharField(max_length=250)
@@ -16,4 +20,15 @@ class Movie(models.Model):
   
   def __str__(self):
     return f'{self.full_title} ({self.id})'
-
+    
+class Review(models.Model):
+  content = models.TextField(max_length=500),
+  rating = models.IntegerField(
+        default=1,
+        validators=[
+            MaxValueValidator(5),
+            MinValueValidator(1)
+        ]
+     ),
+  author = models.ForeignKey(User, on_delete=models.CASCADE)
+  opinion = models.ForeignKey(Movie, on_delete=models.CASCADE)

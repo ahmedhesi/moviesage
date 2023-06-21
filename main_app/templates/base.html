@@ -22,8 +22,8 @@
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'about' %}">Movies I Want To Watch</a></li>
-          <li><a href="{% url 'about' %}">Watched Movies</a></li>
+          <li><a href="{% url 'want_list' %}">Movies I Want To Watch</a></li>
+          <li><a href="{% url 'watch_list' %}">Watched Movies</a></li>
           <li>
             <form action="{% url 'search' %}" method="POST">
               {% csrf_token %}
