@@ -14,6 +14,8 @@
         <p>Plot: {{ movie.plot }}</p>
         <p>Stars: {{ movie.stars }}</p>
     </div>
+
+    <a href="{% url 'unassoc_want_user' movie.id %}">Delete</a>
 </a>
 {% endfor %}
 

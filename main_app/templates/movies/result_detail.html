@@ -14,7 +14,14 @@
         <p>Director: {{ movie.director }}</p>
         <p>Plot: {{ movie.plot }}</p>
         <p>Stars: {{ movie.stars }}</p>
-        
+        <form action="{% url 'assoc_watched_user' movie.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn" value="Add To Watched List">
+        </form>
+        <form action="{% url 'assoc_want_user' movie.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn" value="Add To Want To Watch List">
+        </form>
     </div>
 </div>
 
