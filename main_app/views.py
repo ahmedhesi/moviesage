@@ -22,7 +22,6 @@ def about(request):
 @login_required
 def want_list(request):
   movies = Movie.objects.filter(wanters=request.user)
-
   print(movies)
   return render(request, 'want_list.html', {
     'movies': movies
@@ -68,19 +67,19 @@ def detail(request, result_id):
     return render(request, 'movies/detail.html', {'movie': movie})
   
 def assoc_want_user(request, movie_id):
-   Movie.objects.get(id=movie_id).wanters.add(request.user.id)
+   Movie.objects.get(id=movie_id).wanters_set.add(request.user.id)
    return redirect('want_list')
 
 def unassoc_want_user(request, movie_id):
-  Movie.objects.get(id=movie_id).wanters.remove(request.user.id)
+  Movie.objects.get(id=movie_id).wanters_set.remove(request.user.id)
   return redirect('want_list')
 
 def assoc_watched_user(request, movie_id):
-   Movie.objects.get(id=movie_id).watchers.add(request.user.id)
+   Movie.objects.get(id=movie_id).watchers_set.add(request.user.id)
    return redirect('watch_list')
 
 def unassoc_watched_user(request, movie_id):
-  Movie.objects.get(id=movie_id).watchers.remove(request.user.id)
+  Movie.objects.get(id=movie_id).watchers_set.remove(request.user.id)
   return redirect('watch_list')
 
 

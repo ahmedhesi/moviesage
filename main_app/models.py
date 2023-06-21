@@ -11,8 +11,8 @@ class Movie(models.Model):
   director = models.CharField(max_length=250)
   plot = models.CharField(max_length=250)
   stars = models.TextField(max_length=250)
-  wanters = models.ManyToManyField(User, related_name='wanters_article_set' )
-  watchers = models.ManyToManyField(User, related_name='watchers_article_set' )
+  wanters = models.ManyToManyField(User, related_name='wanters_set' )
+  watchers = models.ManyToManyField(User, related_name='watchers_set' )
   
   def __str__(self):
     return f'{self.full_title} ({self.id})'
