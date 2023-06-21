@@ -22,7 +22,6 @@ def about(request):
 @login_required
 def want_list(request):
   movies = Movie.objects.filter(wanters=request.user)
-
   print(movies)
   return render(request, 'want_list.html', {
     'movies': movies
@@ -36,6 +35,25 @@ def watch_list(request):
   return render(request, 'watch_list.html', {
     'movies': movies
   })
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # This is how to create a 'user' form object
+    # that includes the data from the browser
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      # This will add the user to the database
+      user = form.save()
+      # This is how we log a user in via code
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  # A bad POST or a GET request, so render signup.html with an empty form
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
 
 
 def search(request):    
@@ -68,19 +86,19 @@ def detail(request, result_id):
     return render(request, 'movies/detail.html', {'movie': movie})
   
 def assoc_want_user(request, movie_id):
-   Movie.objects.get(id=movie_id).wanters.add(request.user.id)
+   Movie.objects.get(id=movie_id).wanters_set.add(request.user.id)
    return redirect('want_list')
 
 def unassoc_want_user(request, movie_id):
-  Movie.objects.get(id=movie_id).wanters.remove(request.user.id)
+  Movie.objects.get(id=movie_id).wanters_set.remove(request.user.id)
   return redirect('want_list')
 
 def assoc_watched_user(request, movie_id):
-   Movie.objects.get(id=movie_id).watchers.add(request.user.id)
+   Movie.objects.get(id=movie_id).watchers_set.add(request.user.id)
    return redirect('watch_list')
 
 def unassoc_watched_user(request, movie_id):
-  Movie.objects.get(id=movie_id).watchers.remove(request.user.id)
+  Movie.objects.get(id=movie_id).watchers_set.remove(request.user.id)
   return redirect('watch_list')
 
 
