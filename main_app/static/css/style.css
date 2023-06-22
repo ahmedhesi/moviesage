@@ -14,34 +14,80 @@ footer.page-footer {
     text-align: right;
 }
 
-.poster {
-    display: flex;
-    margin: 10px;
-    width: 20%;
+td, th{
+  padding: 5px;
+  width: fit-content;
+
 }
 
-/* .poster>img {
-    margin: 0 auto;
-    width: 20%;
-} */
+.movie-display {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 70vh;
+  width: 90%;
+  justify-content: center;
+}
 
-#show-page {
-    margin-top: 2rem;
-    font-size: larger;
-    font-weight: bold;
+.show {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  border: 1px solid black;
+  padding: 15px;
+  align-content: center;
+}
+
+.poster{
+  display: flex;
+  margin: 2px;
+  justify-content: right;
+}
+
+.poster>img {
+  margin: 0 auto;
+}
+
+.review-section {
+  margin: 20px;
+  width: 100%;
+  align-content: center;
+}
+
+.show-page {
+  margin-top: 2rem;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.card-content{
+  height: fit-content;
+}
+
+.search_tile{
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.thumbnail{
+  display: flex;
+}
+
+.thumbnail > img{
+  width: 100%;
+  height: auto;
+  
+}
+
+.search_result{
+  display: flex;
+  align-content: center;
+  margin: 20px;
 }
 
 h1 {
-    color: red;
+    color: darkred;
     text-align: center;
-    border: .5px solid blue;
 }
-
-
-
-
-
-
 
 * {box-sizing:border-box}
 
@@ -129,4 +175,8 @@ h1 {
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+.carousel{
+  margin: 10px;
 }
