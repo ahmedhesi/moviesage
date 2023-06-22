@@ -2,18 +2,18 @@
 
 MovieSage is an application designed to enhance your movie-watching experience and keep your cinematic journey organized!
 
-# Screenshot
+## 📸 Screenshot
 
-<img href="{% static 'images/moviesage_screenshot.png' %}">
+<img href="{% static 'images/moviesage_screenshot/.png' %}">
 
-# Technologies Used
+##  💻 Technologies Used
 -Django
 -HTML
 -CSS
 -NeonDB
 -Heroku Hosting
 
-# Getting Started
+## 🔥 Getting Started
 
 #### [CLICK TO ACCESS THE APP](https://moviesage-f4cfba681d1e.herokuapp.com/)
 <p>Created by:</p><br>

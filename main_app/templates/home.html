@@ -1,47 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div class="container">
+  <h5>Men of Visions in Entertainment Systems (M.O.V.I.E.S) Presents:</h5>
+  <h1>MovieSage</h1>
+  <p>Enhance your movie-watching experience and keep your cinematic journey organized!</p>
 
-<h5>Men of Visions in Entertainment Systems (M.O.V.I.E.S) Presents:</h5>
-<h1>MovieSage</h1>
-<p>Enhance your movie-watching experience and keep your cinematic journey organized!</p>
-
-<div class="carousel carousel-slider">
+  <div class="carousel carousel-slider">
     <a class="carousel-item" href="#one!"><img src="{% static 'images/dark_knight_carousel.png' %}"></a>
     <a class="carousel-item" href="#two!"><img src="{% static 'images/ToyStory2_carousel.png' %}"></a>
     <a class="carousel-item" href="#three!"><img src="{% static 'images/home_carousel.png' %}"></a>
-</div>
+  </div>
 
+  <script>
 
-<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // initialize carousel
+      const carousel = document.querySelectorAll('.carousel');
+      M.Carousel.init(carousel, {
+        fullWidth: true,
+        indicators: true, // this option is require for autoplay functionnality
+      });
 
-document.addEventListener('DOMContentLoaded', () => {
-  // initialize carousel
-  const carousel = document.querySelectorAll('.carousel');
-  M.Carousel.init(carousel, {
-    fullWidth: true,
-    indicators: true, // this option is require for autoplay functionnality
-  });
-  
-  // custom function for autoplaying 
-  let indicatorItems = document.querySelectorAll('.carousel .indicator-item'),
-      slideTime = 3000,
-      activeClass = "active";
+      // custom function for autoplaying 
+      let indicatorItems = document.querySelectorAll('.carousel .indicator-item'),
+        slideTime = 3000,
+        activeClass = "active";
 
-  setInterval(() => {
-    indicatorItems.forEach(el => {
-      if (el.classList.contains(activeClass)) {
-        sib = el.nextElementSibling;
-        if (sib == null) {
-          indicatorItems[0].click();
-        } else {
-          sib.click()
-        }
-      }
+      setInterval(() => {
+        indicatorItems.forEach(el => {
+          if (el.classList.contains(activeClass)) {
+            sib = el.nextElementSibling;
+            if (sib == null) {
+              indicatorItems[0].click();
+            } else {
+              sib.click()
+            }
+          }
+        });
+      }, slideTime);
     });
-  }, slideTime);
-});
 
-</script>
+  </script>
 
-{% endblock %}
+  {% endblock %}
+</div>
