@@ -4,7 +4,7 @@ MovieSage is an application designed to enhance your movie-watching experience a
 
 # Screenshot
 
-<img href="{% static 'images/moviesage_screenshot/.png' %}">
+<img href="{% static 'images/moviesage_screenshot.png' %}">
 
 # Technologies Used
 -Django
