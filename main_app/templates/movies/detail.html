@@ -14,11 +14,30 @@
         <p>Director: {{ movie.director }}</p>
         <p>Plot: {{ movie.plot }}</p>
         <p>Stars: {{ movie.stars }}</p>
-        
-        
     </div>
 </div>
-<a href="{% url 'add_review' movie.id %}">Write Your Review</a>
-
+<div class="col s6">
+    <form method="POST" action="{% url 'add_review' movie.id %}">
+        {% csrf_token %}
+        <!-- Render the inputs -->
+        {{ review_form.as_p }}
+        <input type="submit" class="btn" value="Add Review">
+      </form>
+    <table class="striped">
+      <thead>
+        <tr><th>content</th><th>rating</th><th>author</th><th>movie</th></tr>
+      </thead>
+      <tbody>
+        {% for review in movie.review_set.all %}
+          <tr>
+            <td>{{review.content}}</td>
+            <td>{{review.rating}}</td>
+            <td>{{review.author}}</td>
+            <td>{{review.movie}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
 {% endblock %}
