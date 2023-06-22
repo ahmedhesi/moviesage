@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Movie
+from .forms import ReviewForm
 environ.Env()
 environ.Env.read_env()
 
@@ -89,7 +90,8 @@ def result_detail(request, result_id):
   
 def detail(request, movie_id):
   movie=Movie.objects.get(id=movie_id)
-  return render(request, 'movies/detail.html', {'movie': movie})
+  review_form = ReviewForm()
+  return render(request, 'movies/detail.html', {'movie': movie, 'review_form': review_form})
 
 def assoc_want_user(request, movie_id):
    Movie.objects.get(id=movie_id).wanters.add(request.user.id)
@@ -106,6 +108,15 @@ def assoc_watched_user(request, movie_id):
 def unassoc_watched_user(request, movie_id):
   Movie.objects.get(id=movie_id).watchers.remove(request.user.id)
   return redirect('watch_list')
+
+def add_review(request, movie_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+   new_review = form.save(commit=False)
+   new_review.movie_id = movie_id
+   new_review.save()
+  return redirect('detail', movie_id=movie_id)
+
 
 
 

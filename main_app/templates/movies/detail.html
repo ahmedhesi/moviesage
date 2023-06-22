@@ -15,8 +15,10 @@
         <p>Plot: {{ movie.plot }}</p>
         <p>Stars: {{ movie.stars }}</p>
         
+        
     </div>
 </div>
+<a href="{% url 'add_review' movie.id %}">Write Your Review</a>
 
 
 {% endblock %}
