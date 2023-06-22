@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Movie
 from .forms import ReviewForm
+from .models import Movie
+
 environ.Env()
 environ.Env.read_env()
 
@@ -110,10 +111,12 @@ def unassoc_watched_user(request, movie_id):
   return redirect('watch_list')
 
 def add_review(request, movie_id):
+  movie = Movie.objects.get(id = movie_id)
   form = ReviewForm(request.POST)
   if form.is_valid():
    new_review = form.save(commit=False)
-   new_review.movie_id = movie_id
+   new_review.movie = movie
+   new_review.author = request.user
    new_review.save()
   return redirect('detail', movie_id=movie_id)
 
