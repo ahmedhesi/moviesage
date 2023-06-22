@@ -4,19 +4,21 @@
 <h1>Movies I want to Watch</h1>
 
 {% for movie in movies%}
-<a href="{% url 'detail' movie.id %}">
-    <img src="{{movie.image}}">
-    <div class="card-content">
-        <span class="card-title">{{ movie.full_title }}</span>
-        <p>Release Date: {{ movie.release_date }}</p>
-        <p>Length: {{ movie.runt }}</p>
-        <p>Director: {{ movie.director }}</p>
-        <p>Plot: {{ movie.plot }}</p>
-        <p>Stars: {{ movie.stars }}</p>
-    </div>
+<div class="card-content">
 
+    <span class="card-title">{{ movie.full_title }}</span>
+    <img src="{{movie.image}}" class="poster">
+    <p>Release Date: {{ movie.release_date }}</p>
+    <p>Length: {{ movie.runt }}</p>
+    <p>Director: {{ movie.director }}</p>
+    <p>Plot: {{ movie.plot }}</p>
+    <p>Stars: {{ movie.stars }}</p>
+
+    <a href="{% url 'detail' movie.id %}">View Details</a>
+    <br>
     <a href="{% url 'unassoc_want_user' movie.id %}">Delete</a>
-</a>
+
+</div>
 {% endfor %}
 
 {% endblock %}
