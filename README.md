@@ -1,10 +1,10 @@
 #  PROJECT 3: MovieSage
 
-MovieSage is an application designed to enhance your movie-watching experience and keep your cinematic journey organized!
+MovieSage is an application designed to enhance your movie-watching experience and keep your cinematic journey organized! You can use MovieSage to save movies that you're excited about but don't have time to watch immediately. The application allows you to create a "Watchlist" where you can add these movies for future viewing. Additionally, you can create a separate list to keep track of the movies you've already watched. Once you've watched a movie, you have the option to leave a review about how you liked it. At the bottom of the review, you can provide a rating to reflect your overall opinion of the movie.
 
 ## 📸 Screenshot
 
-<img href="{% static 'images/moviesage_screenshot/.png' %}">
+<img src="main_app/static/images/moviesage_screenshot.png">
 
 ##  💻 Technologies Used
 -Django

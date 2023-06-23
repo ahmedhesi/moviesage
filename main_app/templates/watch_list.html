@@ -4,34 +4,21 @@
 <h1>Movies I Have Already Seen</h1>
 
 {% for movie in movies%}
-<div class="card">
+<div class="card card-container">
+    <img src="{{movie.image}}" alt="{{movie.title}}">
     <div class="card-content">
-        <div class="search_tile">
-            <div class="thumbnail">
-                <img src="{{movie.image}}" alt="{{movie.title}}">
-            </div>
-            <div class="search_result">
-                <div class="card-content">
-                    <a href="{% url 'detail' movie.id %}">Click for more details</a>
-                    <span class="card-title">{{ movie.full_title }}</span>
-                    <p>Release Date: {{ movie.release_date }}</p>
-                    <p>Length: {{ movie.runt }}</p>
-                    <p>Director: {{ movie.director }}</p>
-                    <p>Plot: {{ movie.plot }}</p>
-                    <p>Stars: {{ movie.stars }}</p>
-                    <br>
-                    <form action="{% url 'detail' movie.id %}" method="POST">
-                        {% csrf_token %}
-                        <input type="submit" class="btn" value="View Details">
-                    </form>
-                    <br>
-                    <form action="{% url 'unassoc_watched_user' movie.id %}" method="POST">
-                        {% csrf_token %}
-                        <input type="submit" class="btn" value="Delete">
-                    </form>
-                </div>
-            </div>
-        </div>
+        <a href="{% url 'detail' movie.id %}">Click for more details</a>
+        <span class="card-title">{{ movie.full_title }}</span>
+        <p>Release Date: {{ movie.release_date }}</p>
+        <p>Length: {{ movie.runt }}</p>
+        <p>Director: {{ movie.director }}</p>
+        <p>Plot: {{ movie.plot }}</p>
+        <p>Stars: {{ movie.stars }}</p>
+        <br>
+        <form action="{% url 'unassoc_watched_user' movie.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn" value="Delete">
+        </form>
     </div>
 </div>
 
