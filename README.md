@@ -4,7 +4,16 @@ MovieSage is an application designed to enhance your movie-watching experience a
 
 ## 📸 Screenshot
 
-<img src="main_app/static/images/moviesage_screenshot.png">
+### Log in page/Home page:
+<img src="https://i.imgur.com/cbgr8dM.png">
+
+
+### Movies I Want To Watch:
+<img src="https://i.imgur.com/o2WF0Ft.png">
+
+### Movies I Have Already Seen:
+<img src="https://i.imgur.com/bwG1kAS.png">
+
 
 ##  💻 Technologies Used
 -Django
