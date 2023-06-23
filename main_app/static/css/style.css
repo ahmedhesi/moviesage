@@ -60,28 +60,17 @@ td, th{
 }
 
 .card-content{
-  height: fit-content;
+  width: 80%;
 }
 
-.search_tile{
-  display: grid;
-  grid-template-columns: 10% 90%;
-}
-
-.thumbnail{
+.card-container {
   display: flex;
-}
-
-.thumbnail > img{
   width: 100%;
-  height: auto;
-  
+  align-items: center;
 }
 
-.search_result{
-  display: flex;
-  align-content: center;
-  margin: 20px;
+.card-container > img {
+  width: 20%;
 }
 
 h1 {
