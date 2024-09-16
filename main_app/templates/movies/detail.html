@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ movie.full_title }}</h1>
+
+<div class="movie-display">
+  <div class="poster">
+    <img src="{{movie.image}}">
+  </div>
+  <div class="show">
+      <span class="card-title">{{ movie.full_title }}</span>
+      <p>Release Date: {{ movie.release_date }}</p>
+      <p>Length: {{ movie.runt }}</p>
+      <p>Director: {{ movie.director }}</p>
+      <p>Plot: {{ movie.plot }}</p>
+      <p>Stars: {{ movie.stars }}</p>
+  </div>
+</div>
+<div class="review-section">
+  <div class="col s6">
+    <form method="POST" action="{% url 'add_review' movie.id %}">
+      {% csrf_token %}
+      <!-- Render the inputs -->
+      {{ review_form.as_p }}
+      <input type="submit" class="btn" value="Add Review">
+    </form>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Author</th>
+          <th>Rating</th>
+          <th>Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for review in movie.review_set.all %}
+        <tr>
+          <td>{{review.author}}</td>
+          <td>{{review.rating}}</td>
+          <td>{{review.content}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
